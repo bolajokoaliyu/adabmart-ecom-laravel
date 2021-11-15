@@ -18,12 +18,19 @@ use App\Http\Controllers\ProductController;
 Route::get('/login', function () {
     return view('login');
 });
+Route::view('/register', 'register');
 Route::get('/logout', function () {
     Session::forget('user');
     return redirect('login');
 });
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
 Route::get('/', [ProductController::class, 'index']);
 Route::get('detail/{id}', [ProductController::class, 'detail']);
 Route::get('search', [ProductController::class, 'search']);
 Route::post('addToCart', [ProductController::class, 'addToCart']);
+Route::get('cartlist', [ProductController::class, 'cartList']);
+Route::get('removecart/{id}', [ProductController::class, 'removeCart']);
+Route::get('ordernow', [ProductController::class, 'orderNow']);
+Route::post('placeorder', [ProductController::class, 'placeOrder']);
+Route::get('myorders', [ProductController::class, 'myOrders']);
